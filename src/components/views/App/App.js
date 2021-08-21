@@ -3,6 +3,7 @@ import MainPage from '../MainPage';
 import CartPage from '../CartPage';
 import AppHeader from '../../organismes/AppHeader';
 import WithRestoService from '../../organismes/HighOrderComponents'
+import Wrapper from '../../atoms';
 
 const App = ({ RestoService }) => {
     return (
