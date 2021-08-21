@@ -5,7 +5,7 @@ import { BrowserRouter as Router } from 'react-router-dom';
 import App from './components/views/App';
 import ErrorBoundry from './components/organismes/ErrorBoundry';
 import RestoService from './services/resto-service';
-import RestoServicesContext from './components/organismes/RestoServiceContext';
+import RestoServiceContext from './components/organismes/RestoServiceContext';
 import store from './store';
 
 
@@ -14,15 +14,12 @@ const restoService = new RestoService();
 ReactDOM.render(
   <Provider store={store}>
     <ErrorBoundry>
-      <RestoServicesContext.Provider value={restoService}>
+      <RestoServiceContext.Provider value={restoService}>
         <Router>
           <App />
         </Router>
-      </RestoServicesContext.Provider>
+      </RestoServiceContext.Provider>
     </ErrorBoundry>
-  </Provider>,
-  document.getElementById('root')
+  </Provider>
+  , document.getElementById('root')
 );
-
-
-

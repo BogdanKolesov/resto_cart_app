@@ -1,6 +1,6 @@
 import React from 'react';
 
-const CartPage = () => {
+const AppHeader = () => {
     return (
         <div>
 
@@ -8,4 +8,4 @@ const CartPage = () => {
     );
 };
 
-export default CartPage;
+export default AppHeader;

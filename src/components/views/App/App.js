@@ -1,18 +1,28 @@
 import React from 'react';
+import { Route, Switch } from 'react-router-dom';
 import MainPage from '../MainPage';
 import CartPage from '../CartPage';
 import AppHeader from '../../organismes/AppHeader';
-import WithRestoService from '../../organismes/HighOrderComponents'
-import Wrapper from '../../atoms';
+import { Wrapper } from '../../atoms';
 
-const App = ({ RestoService }) => {
+const App = () => {
     return (
         <Wrapper>
             <AppHeader />
-            <MainPage />
-            <CartPage />
+            <Switch>
+                <Route
+                    path="/"
+                    component={MainPage}
+                    exact
+                />
+                <Route
+                    path="/cart"
+                    component={CartPage}
+                    exact
+                />
+            </Switch>
         </Wrapper>
     );
 };
 
-export default WithRestoService()(App);
+export default App;
