@@ -16,4 +16,4 @@ const WithRestoService = () => (Wrapped) => {
     };
 };
 
-export default WithRestoService;
+export { WithRestoService };

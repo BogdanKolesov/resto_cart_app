@@ -20,6 +20,10 @@ const App = () => {
                     component={CartPage}
                     exact
                 />
+                <Route
+                    exact
+                    component={MainPage}
+                />
             </Switch>
         </Wrapper>
     );
