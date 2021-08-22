@@ -1,11 +1,10 @@
 import React from 'react';
+import MenuList from '../../organismes/MenuList/';
 
 const MainPage = () => {
     return (
-        <div>
-
-        </div>
-    );
-};
+        <MenuList />
+    )
+}
 
 export default MainPage;
