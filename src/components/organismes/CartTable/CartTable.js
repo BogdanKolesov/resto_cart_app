@@ -1,5 +1,8 @@
 import React from 'react';
 import styled from 'styled-components';
+import { connect } from 'react-redux';
+import { deleteFromCart } from '../../../actions/'
+
 
 
 const CartTitle = styled.h3`
@@ -30,20 +33,40 @@ const CartClose = styled.div`
 
 `
 
-const CartTable = () => {
+
+
+const CartTable = ({ items, deleteFromCart }) => {
     return (
         <>
             <CartTitle>Ваш заказ:</CartTitle>
             <CartList>
-                <CartItem>
-                    <CartItemImg src="#" alt="Cesar salad"></CartItemImg>
-                    <CartItemTitle>Cesar salad</CartItemTitle>
-                    <CartItemPrice>12$</CartItemPrice>
-                    <CartClose>&times;</CartClose>
-                </CartItem>
+                {
+                    items.map(item => {
+                        const { title, price, url, id } = item;
+                        return (
+                            <CartItem>
+                                <CartItemImg src={url} alt={title}></CartItemImg>
+                                <CartItemTitle>{title}</CartItemTitle>
+                                <CartItemPrice>{price}$</CartItemPrice>
+                                <CartClose onClick={() => deleteFromCart(id)}>&times;</CartClose>
+                            </CartItem>
+                        )
+                    })
+                }
+
             </CartList>
         </>
     );
 };
 
-export default CartTable;
+const mapStateToProps = ({ items }) => {
+    return {
+        items
+    }
+}
+
+const mapDispathToProps = {
+    deleteFromCart
+};
+
+export default connect(mapStateToProps, mapDispathToProps)(CartTable);

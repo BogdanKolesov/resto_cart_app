@@ -1,9 +1,16 @@
 import React, { Component } from 'react';
+import styled from 'styled-components';
 import MenuListItem from '../../molecules/MenuListItem';
 import { connect } from 'react-redux';
 import { WithRestoService } from '../HighOrderComponents';
-import { menuLoaded, menuRequested } from '../../../actions/';
+import { menuLoaded, menuRequested, addedToCart } from '../../../actions/';
 import { Loader } from '../../atoms';
+
+const MenuUnorderedList = styled.ul`
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+`
 
 
 class MenuList extends Component {
@@ -17,22 +24,25 @@ class MenuList extends Component {
     }
 
     render() {
-        const { menuItems, loading } = this.props;
+        const { menuItems, loading, addedToCart } = this.props;
 
         if (loading) {
             return <Loader />
         }
 
         return (
-            <ul>
+            <MenuUnorderedList>
                 {
                     menuItems.map(menuItem => {
                         return <MenuListItem
                             key={menuItem.id}
-                            menuItem={menuItem} />
+                            menuItem={menuItem}
+                            onAddToCart={() => addedToCart(menuItem.id)}
+                        />
                     })
                 }
-            </ul>
+            </MenuUnorderedList>
+
         );
     }
 }
@@ -46,8 +56,17 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = {
     menuLoaded,
-    menuRequested
+    menuRequested,
+    addedToCart
 };
+
+const View = ({ items }) => {
+    return (
+        <ul>
+            {items}
+        </ul>
+    )
+}
 
 export default WithRestoService()
     (connect(mapStateToProps, mapDispatchToProps)
